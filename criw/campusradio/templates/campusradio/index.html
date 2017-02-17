@@ -1,0 +1,7 @@
+<h1>Campusradio Indiewelle</h1>
+<h2>Shows</h2>
+<ul>
+{% for show in show_list %}
+<li><a href="{{show.get_absolute_url}}">show.name</a></li>
+</ul>
+{% endfor %}
