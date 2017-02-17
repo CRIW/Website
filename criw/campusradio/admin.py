@@ -9,7 +9,7 @@ class HostAdmin(admin.ModelAdmin):
 	fields = ['name', 'bio', 'image', 'shows']
 
 class EpisodeAdmin(admin.ModelAdmin):
-	list_display = ('show','name','published', 'added')
+	list_display = ('show','name','published', 'added','slug')
 	list_filter = ('show',)
 	date_hierachy = 'added'
 	fields = ['archive_link', 'name','added', 'description','image','mp3_link','waveform_link', 'show']

@@ -18,3 +18,7 @@ def episodes(request):
 def episode(request, episode_slug):
 	show = get_object_or_404(Episode,slug=episode_slug)
 	return render(request, 'campusradio/episode.html', {'episode': episode})
+
+def page(request, page_slug):
+	show = get_object_or_404(Page,slug=page_slug)
+	return render(request, 'campusradio/page.html', {'page': page})

@@ -1,0 +1,16 @@
+<div id="navbar">
+  <ul>
+  <li><a class="nav">Neues</a></li>
+  <li><a class="nav">Sendungen</a>
+  <ul>
+    {% for show in shows %}
+    <li><a class="nav" href="{{show.get_absolute_url}}">{{show.name}}</a></li>
+    {% endfor %}
+  </ul>
+  <li><a class="nav">Episoden</a></li>
+  </li>
+  {% for page in pages %}
+  <li><a href="{{page.get_absolute_url}}" class="nav">{{page.title}}</a></li>
+  {% endfor %}
+  <ul>
+</div>

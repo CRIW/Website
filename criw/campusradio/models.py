@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 import os
 import markdown
 from urllib.request import urlopen
@@ -33,6 +34,8 @@ class Show(models.Model):
 		if not self.id:
 			self.slug = slugify(self.name)
 		super(Show, self).save(*args, **kwargs)
+	def get_absolute_url(self):
+		return reverse('show', kwargs={'show_slug':self.slug})
 
 #Someone who hosts a radioshow
 class Host(models.Model):
@@ -80,9 +83,15 @@ class Episode(models.Model):
 		if not self.waveform_link:
 			self.waveform_link = metadata['waveform_link']
 		if not self.id:
+			other_episodes = Episode.objects.all()
+			i = 2
 			self.slug = slugify(self.name)
-
+			while other_episodes.filter(slug=self.slug).count() > 0:
+				self.slug = slugify(self.name + "-" + str(i))
+				i = i + 1
 		super(Episode, self).save(*args, **kwargs)
+	def get_absolute_url(self):
+		return reverse('episode', kwargs={'episode_slug':self.slug})
 
 #Fetches the mp3 download url from the internet archive link
 def get_archive_mp3_url(archive_url):
@@ -132,9 +141,11 @@ class Page(models.Model):
 		return self.title
 	def save(self, *args, **kwargs):
 		if not self.id:
-			self.slug = slugify(self.name)
+			self.slug = slugify(self.title)
 		self.html_content = markdown.markdown(self.markdown_content)
 		super(Page, self).save(*args, **kwargs)
+	def get_absolute_url(self):
+		return reverse('page', kwargs={'page_slug':self.slug})
 
 
 #Image class for embedding images into pages
