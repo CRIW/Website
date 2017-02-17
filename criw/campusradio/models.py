@@ -58,6 +58,7 @@ class Episode(models.Model):
 	image = models.ImageField(upload_to=get_host_image_path, blank=True, null=True)
 	archive_link = models.URLField()
 	mp3_link = models.CharField(max_length=200,blank=True)
+	waveform_link = models.CharField(max_length=200,blank=True)
 	show = models.ForeignKey(
         'Show',
         on_delete=models.CASCADE,
@@ -66,7 +67,7 @@ class Episode(models.Model):
 		return self.name
 	def save(self, *args, **kwargs):
 		metadata = None
-		if (not self.added) or (not self.mp3_link) or (not self.description) or (not self.name):
+		if (not self.added) or (not self.mp3_link) or (not self.description) or (not self.name) or (not self.waveform_link):
 			metadata = get_archive_metadata(self.archive_link)
 		if not self.mp3_link:
 			self.mp3_link = metadata['mp3_link']
@@ -76,6 +77,8 @@ class Episode(models.Model):
 			self.name = metadata['metadata']['title']
 		if not self.added:
 			self.added = parser.parse(metadata['metadata']['addeddate'])
+		if not self.waveform_link:
+			self.waveform_link = metadata['waveform_link']
 		if not self.id:
 			self.slug = slugify(self.name)
 
@@ -113,7 +116,8 @@ def get_archive_metadata(archive_url):
 		for f in metadata['files']:
 			if("MP3" in f['format']):
 				metadata['mp3_link'] = 'https://archive.org/download/' + descriptor + '/' + f['name']
-				break
+			if("PNG" in f['format']):
+				metadata['waveform_link'] = 'https://archive.org/download/' + descriptor + '/' + f['name']
 		return metadata
 	except:
 		return None
