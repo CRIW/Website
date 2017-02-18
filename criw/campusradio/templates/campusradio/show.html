@@ -1,2 +1,33 @@
-<h1>{{show.name}}</h1>
-<p>{{show.description}}</p>
+{% extends 'campusradio/base.html' %}
+{% load static %}
+{% load episode %}
+{% block head %}
+<link rel="stylesheet" href="{% static "show.css" %}"/>
+{% endblock %}
+{% block title %}Campusradio Indiewelle: {{show.name}}{% endblock %}
+{% block content %}
+{%if show.image %}
+<img src="{{show.image.url}}" class="show-image"/>
+{% endif %}
+<h1 class="show-title">{{show.name}}</h1>
+<div class="show-slot">{{show.slot}}</div>
+<div class="show-description">{{show.description}}</div>
+<h3>Moderation</h3>
+<div class="row">
+{% for h in hosts %}
+<div class="show-host-stack" {% if h.bio %}data-tooltip="{{h.bio}}" class="tooltip-bottom"{%endif%}>
+<img class="show-host-image stack" src="{% if h.image %}{{h.image.url}}{% else %}{% static "Campusradio.svg"%}{%endif%}" />
+<div class="show-host-name stack">{{h.name}}</div>
+</div>
+{% endfor %}
+<div id="show-host-bio">
+
+</div>
+</div>
+<div class="episode-itemize">
+<h2>Episoden</h2>
+{% for e in episodes %}
+<span>{% episode e %}</span><br/>
+{% endfor %}
+</div>
+{% endblock %}

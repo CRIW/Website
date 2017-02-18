@@ -1,16 +1,22 @@
-<div id="navbar">
-  <ul>
-  <li><a class="nav">Neues</a></li>
-  <li><a class="nav">Sendungen</a>
-  <ul>
+{% load static %}
+<nav>
+  <a href="/" class="brand">
+   <img class="logo" src="{% static "Campusradio.svg" %}" />
+   <span id="name-span"></span>
+ </a>
+  <div class="menu">
+  <a class="pseudo button" href="/">Neues</a>
+  <span class="dropdown-container" onmouseleave="document.getElementById('dropdown-sendungen').classList.remove('active');" onmouseenter="document.getElementById('dropdown-sendungen').classList.add('active');">
+  <a class="pseudo button" onclick="document.getElementById('dropdown-sendungen').classList.toggle('active');">Sendungen</a>
+  <div class="dropdown" id="dropdown-sendungen">
     {% for show in shows %}
-    <li><a class="nav" href="{{show.get_absolute_url}}">{{show.name}}</a></li>
+    <a class="pseudo button" href="{{show.get_absolute_url}}">{{show.name}}</a><br/>
     {% endfor %}
-  </ul>
-  <li><a class="nav">Episoden</a></li>
-  </li>
+  </div>
+</span>
+  <!--<a class="pseudo button">Episoden</a></li>-->
   {% for page in pages %}
-  <li><a href="{{page.get_absolute_url}}" class="nav">{{page.title}}</a></li>
+  <a href="{{page.get_absolute_url}}" class="pseudo button">{{page.title}}</a>
   {% endfor %}
-  <ul>
 </div>
+</nav>

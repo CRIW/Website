@@ -1,0 +1,87 @@
+{%load static %}
+<div class="card episode">
+  <div class="episode-background"></div>
+  <div class="episode-progress" id="progress-{{episode.slug}}"></div>
+  <div class="episode-scan" id="scan-{{episode.slug}}"></div>
+  <img class="episode-waveform" id="waveform-{{episode.slug}}" src="{%static "episode-waveform.png" %}" id="waveform-{{episode.slug}}" />
+  <div class="episode-play"><div class="episode-playbutton" id="play-{{episode.slug}}" paused="true">▶</div></div>
+  <audio class="episode-audio" id="audio-{{episode.slug}}"></audio>
+  <div class="episode-description">
+    <a href="{{episode.get_absolute_url}}" class="episode-title">{{episode.name}}</a>
+    <a href="{{episode.archive_link}}" class="episode-date" data-tooltip="archive.org" class="tooltip-left">{{episode.added|date:"d.m.Y"}}</a>
+  </div>
+  <br/>
+  <div class="episode-text-container" mode="short" id="container-{{episode.slug}}">
+    <div class="episode-text" id="text-{{episode.slug}}">
+    {{episode.description|safe|striptags|truncatewords:25}}
+    </div>
+    <div class="episode-text-long" id="long-{{episode.slug}}">
+      {{episode.description|safe}}
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  document.getElementById('container-{{episode.slug}}').addEventListener('click', function(e){
+    if(document.getElementById('container-{{episode.slug}}').getAttribute('mode') == 'short'){
+      //Remove short text, fade in long text
+      document.getElementById('long-{{episode.slug}}').style['transition'] = 'max-height 0.5s';
+      document.getElementById('text-{{episode.slug}}').style['max-height'] = '0';
+      document.getElementById('long-{{episode.slug}}').style['max-height'] = '100vh';
+      document.getElementById('container-{{episode.slug}}').setAttribute('mode','long');
+    }else{
+      //Remove long text, fade in short text
+      document.getElementById('long-{{episode.slug}}').style['transition'] = 'none';
+      document.getElementById('long-{{episode.slug}}').style['max-height'] = '0';
+      document.getElementById('text-{{episode.slug}}').style['max-height'] = '100vh';
+      document.getElementById('container-{{episode.slug}}').setAttribute('mode','short');
+    }
+  });
+
+  document.getElementById('play-{{episode.slug}}').addEventListener('click', function(e){
+    var playbutton = document.getElementById('play-{{episode.slug}}');
+    var audio = document.getElementById('audio-{{episode.slug}}');
+    var progress = document.getElementById('progress-{{episode.slug}}');
+    var scan = document.getElementById('scan-{{episode.slug}}');
+    var waveform = document.getElementById('waveform-{{episode.slug}}');
+    if(!audio.getAttribute('src')){ //No audio file loaded, insert adress, queue load, also update waveform to actual waveform
+      waveform.addEventListener('click', function(e){
+        var scanTo = (e.layerX / waveform.scrollWidth) * audio.duration;
+        audio.currentTime = scanTo;
+      });
+      waveform.addEventListener('mousemove', function(e){
+        scan.style.width = e.layerX + 'px';
+      });
+      waveform.addEventListener('mouseout', function(e){
+        scan.style.width = 0;
+      });
+      audio.addEventListener('loadedmetadata', function(){
+        //console.log(audio.duration);
+      });
+      setInterval(function(){
+        //console.log(parseFloat((audio.currentTime / audio.duration) * 100) + "%");
+        if(audio.duration){
+          progress.style.width = ((audio.currentTime / audio.duration) * 100) + "%";
+        }
+      },500);
+      audio.addEventListener('ended',function(){
+        playbutton.setAttribute('paused','true');
+        playbutton.innerText = '▶';
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      audio.setAttribute('src', '{{episode.mp3_link}}');
+      document.getElementById('waveform-{{episode.slug}}').setAttribute('src','{{episode.waveform_link}}');
+      audio.load();
+    }
+    if(playbutton.getAttribute('paused') == 'true'){//We need to play
+      audio.play();
+      playbutton.innerText = '▮▮';
+      playbutton.setAttribute('paused','false');
+    }else{//Just pause
+      audio.pause();
+      playbutton.innerText = '▶';
+      playbutton.setAttribute('paused','true');
+    }
+  });
+
+</script>

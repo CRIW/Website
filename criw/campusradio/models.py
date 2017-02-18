@@ -22,11 +22,15 @@ def get_episode_image_path(instance, filename):
 def get_image_path(instance, filename):
 	return os.path.join('uploads', 'images', str(instance.slug), filename)
 
+def get_index_path(instance, filename):
+	return os.path.join('uploads', 'index', filename)
+
 #A radioshow
 class Show(models.Model):
 	name = models.CharField(max_length=200)
 	slug = models.SlugField()
 	description = models.TextField(blank=True)
+	slot = models.CharField(max_length=400, blank=True)
 	image = models.ImageField(upload_to=get_show_image_path, blank=True, null=True)
 	def __str__(self):
 		return self.name
@@ -34,6 +38,15 @@ class Show(models.Model):
 		if not self.id:
 			self.slug = slugify(self.name)
 		super(Show, self).save(*args, **kwargs)
+		if(self.image.width > 1024): #resize image if excessively large
+			try:
+				from PIL import Image
+				im = Image.open(self.image.path)
+				size = (1024, self.image.height * (1024 / self.image.width))
+				im.thumbnail(size, Image.ANTIALIAS)
+				im.save(self.image.path)
+			except:
+				"Nothing"
 	def get_absolute_url(self):
 		return reverse('show', kwargs={'show_slug':self.slug})
 
@@ -50,7 +63,15 @@ class Host(models.Model):
 		if not self.id:
 			self.slug = slugify(self.name)
 		super(Host, self).save(*args, **kwargs)
-
+		if(self.image.width > 512): #resize image if excessively large
+			try:
+				from PIL import Image
+				im = Image.open(self.image.path)
+				size = (512, self.image.height * (512 / self.image.width))
+				im.thumbnail(size, Image.ANTIALIAS)
+				im.save(self.image.path)
+			except:
+				"Nothing"
 #An episode of a show
 class Episode(models.Model):
 	name = models.CharField(max_length=200, blank=True)
@@ -92,6 +113,8 @@ class Episode(models.Model):
 		super(Episode, self).save(*args, **kwargs)
 	def get_absolute_url(self):
 		return reverse('episode', kwargs={'episode_slug':self.slug})
+	class Meta:
+		ordering = ('-added',);
 
 #Fetches the mp3 download url from the internet archive link
 def get_archive_mp3_url(archive_url):
@@ -160,4 +183,30 @@ class Image(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.slug = slugify(self.name)
-		super(Page, self).save(*args, **kwargs)
+		super(Image, self).save(*args, **kwargs)
+		if(self.image.width > 2048): #resize image if excessively large
+			try:
+				from PIL import Image as img
+				im = img.open(self.image.path)
+				size = (2048, self.image.height * (2048 / self.image.width))
+				im.thumbnail(size, img.ANTIALIAS)
+				im.save(self.image.path)
+			except:
+				"Nothing"
+
+class Index(models.Model):
+	markdown_content = models.TextField()
+	html_content = models.TextField(blank=True)
+	image = models.ImageField(upload_to=get_index_path, blank=True, null=True)
+	def save(self, *args, **kwargs):
+		self.html_content = markdown.markdown(self.markdown_content)
+		super(Index, self).save(*args, **kwargs)
+		if(self.image and self.image.width > 1024): #resize image if excessively large
+			try:
+				from PIL import Image as img
+				im = img.open(self.image.path)
+				size = (1024, self.image.height * (1024 / self.image.width))
+				im.thumbnail(size, img.ANTIALIAS)
+				im.save(self.image.path)
+			except:
+				"Nothing"

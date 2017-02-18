@@ -1,0 +1,14 @@
+body{
+
+}
+
+
+#splash{
+  height: 16em;
+  border-radius: 0.2em;
+  float: right;
+  margin-top: 0.6em;
+  margin-bottom: 1.6em;
+  margin-left: 1.6em;
+  transform: rotate(5deg);
+}

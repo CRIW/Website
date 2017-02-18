@@ -3,18 +3,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static  "picnic.min.css" %}"/>
     <link rel="stylesheet" href="{% static "style.css" %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}"/>
     <title>{% block title %}Campusradio Indiewelle{% endblock %}</title>
+    {% block head %}{% endblock %}
 </head>
 
 <body>
-    <div id="imgbar">
-      <img id="header-image" src="{% static "header.png" %}">
-    </div>
     {% show_nav %}
     <div id="content">
         {% block content %}{% endblock %}
     </div>
+    <br/><br/>
     <div id="footer">
       <span>2017 Campusradio Indiewelle Kiel. </span><a id="adminlink" href="{% url 'admin:index' %}">Admin.</a>
     </div>

@@ -1,0 +1,74 @@
+.show-image{
+  height: 16em;
+  border-radius: 0.2em;
+  float: right;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+@media only screen and (max-device-width: 1000px) {
+  .show-image{
+    float: none;
+  }
+}
+
+.show-slot{
+  font-weight: bold;
+  color: black;
+  font-size: 110%;
+}
+
+.show-title{
+  padding-bottom: 0;
+  font-size: 300%;
+}
+
+
+.show-description{
+  border-left: 4px solid #efefef;
+  padding-left: 1em;
+  margin-top: 0.6em;
+}
+
+.episode-itemize{
+  margin-top: 0.6em;
+}
+
+.show-host-image{
+  min-height: 5em;
+  min-width: 5em;
+  left: -100%;
+   right: -100%;
+   top: -100%;
+   bottom: -100%;
+  margin: auto;
+}
+
+.show-host-name{
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  background-color: #f2f2f2;
+  position:absolute;
+  bottom: 0;
+  border-radius: 0 0 0.2em 0.2em;
+}
+.show-host-stack{
+  border: 1px solid #ccc;
+  border-radius: 0.2em;
+  width: 5em;
+  height: 6.5em;
+  position: relative;
+  display: inline-block;
+}
+
+#show-host-bio{
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin-left: 2em;
+  border-left: 4px solid #efefef;
+  /*height: 6.5em;*/
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
