@@ -1,0 +1,22 @@
+.article-container{
+  padding: 0.2em 0.6em;
+}
+
+.article-title{
+  font-weight: bold;
+  font-size: 150%;
+  display: inline-block;
+  color: black;
+}
+
+
+.article-date{
+  font-size: 1.1em;
+  float: right;
+  font-weight: bold;
+  float:right;
+  color: #888;
+}
+
+.article-content{
+}

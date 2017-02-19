@@ -1,0 +1,26 @@
+{% extends 'campusradio/base.html' %}
+{% load static %}
+{% load episode %}
+{% block title %}Campusradio Indiewelle: Neues{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static "article.css" %}"/>
+{% endblock %}
+{% block content %}
+<h1 style="font-size: 300%; display: inline-block;">Neues</h1>
+{% if not archive %}
+<a href="./archive" style="font-size: 300%; float: right; display: inline-block;">Archiv</a>
+{% endif %}
+{%for item in items %}
+{% if item.type == 'article' %}
+<div class="article-container card">
+  <a href="{{item.article.get_absolute_url}}" class="article-title">{{item.article.title}}</a>
+  <div class="article-date">{{item.article.published|date:"d.m.Y"}}</div>
+  <div class="article-content">{{item.article.html_content|safe}}</div>
+</div>
+{% else %}
+  {% episode item.episode %}
+{% endif %}
+  <br/>
+  <br/>
+{% endfor %}
+{% endblock %}

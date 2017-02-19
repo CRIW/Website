@@ -1,0 +1,7 @@
+{% extends 'campusradio/base.html' %}
+{% block title %}Campusradio Indiewelle: {{article.title}}{% endblock %}
+{% block content %}
+<h1 style="font-size: 300%; display: inline-block;">{{article.title}}</h1>
+<div style="font-size: 300%; float: right; display: inline-block; font-weight: bold; color: #888;">{{article.published|date:"d.m.Y"}}</div>
+<div class="article-content">{{article.html_content|safe}}</div>
+{% endblock %}
