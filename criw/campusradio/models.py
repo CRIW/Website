@@ -38,7 +38,7 @@ class Show(models.Model):
 		if not self.id:
 			self.slug = slugify(self.name)
 		super(Show, self).save(*args, **kwargs)
-		if(self.image.width > 1024): #resize image if excessively large
+		if (self.image) and (self.image.width > 1024): #resize image if excessively large
 			try:
 				from PIL import Image
 				im = Image.open(self.image.path)
@@ -63,7 +63,7 @@ class Host(models.Model):
 		if not self.id:
 			self.slug = slugify(self.name)
 		super(Host, self).save(*args, **kwargs)
-		if(self.image.width > 512): #resize image if excessively large
+		if (self.image) and (self.image.width > 512): #resize image if excessively large
 			try:
 				from PIL import Image
 				im = Image.open(self.image.path)
@@ -187,7 +187,7 @@ class Image(models.Model):
 		if not self.id:
 			self.slug = slugify(self.name)
 		super(Image, self).save(*args, **kwargs)
-		if(self.image.width > 2048): #resize image if excessively large
+		if(self.image) and (self.image.width > 2048): #resize image if excessively large
 			try:
 				from PIL import Image as img
 				im = img.open(self.image.path)
