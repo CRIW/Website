@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Show, Host, Episode, Page, Image, Index
+from .models import Show, Host, Episode, Page, Image, Index, Article
 # Register your models here.
 
 class ShowAdmin(admin.ModelAdmin):
@@ -15,6 +15,10 @@ class EpisodeAdmin(admin.ModelAdmin):
 	fields = ['archive_link', 'show', 'name','added', 'description','image','mp3_link','waveform_link']
 
 class PageAdmin(admin.ModelAdmin):
+	list_display = ('title', 'sort')
+	fields = ['title','sort', 'markdown_content']
+
+class ArticleAdmin(admin.ModelAdmin):
 	fields = ['title', 'markdown_content']
 
 class ImageAdmin(admin.ModelAdmin):
@@ -27,3 +31,4 @@ admin.site.register(Episode, EpisodeAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Index)
+admin.site.register(Article, ArticleAdmin)

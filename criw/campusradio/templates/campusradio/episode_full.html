@@ -5,8 +5,8 @@
 {% endblock %}
 {% block title %}Campusradio Indiewelle: {{show.name}}{% endblock %}
 {% block content %}
-  <a href="{{episode.get_absolute_url}}" style="font-size: 200%;" class="episode-title">{{episode.name}}</a>
-  <a href="{{episode.show.get_absolute_url}}" class="episode-date" style="font-size: 200%;" data-tooltip="{{episode.show.name}}" class="tooltip-left">{{episode.added|date:"d.m.Y"}}</a>
+  <a href="{{episode.get_absolute_url}}" style="font-size: 300%; padding-bottom: 0.6em;" class="episode-title">{{episode.name}}</a>
+  <a href="{{episode.show.get_absolute_url}}" class="episode-date" style="font-size: 300%; padding-bottom: 0.6em;" data-tooltip="{{episode.show.name}}" class="tooltip-left">{{episode.added|date:"d.m.Y"}}</a>
 <div class="card" style="width: 100%; height: 5rem;">
   <div class="episode-background"></div>
   <div class="episode-progress" id="progress-{{episode.slug}}"></div>
@@ -16,29 +16,11 @@
   <audio class="episode-audio" id="audio-{{episode.slug}}"></audio>
 </div>
 
-<div class="episode-text-container" mode="short" id="container-{{episode.slug}}">
-  <div class="episode-text" id="text-{{episode.slug}}">
-  {{episode.description|safe}}
-  </div>
+<div class="episode-text" id="text-{{episode.slug}}">
+{{episode.description|safe}}
 </div>
 
 <script type="text/javascript">
-  document.getElementById('container-{{episode.slug}}').addEventListener('click', function(e){
-    if(document.getElementById('container-{{episode.slug}}').getAttribute('mode') == 'short'){
-      //Remove short text, fade in long text
-      document.getElementById('long-{{episode.slug}}').style['transition'] = 'max-height 0.5s';
-      document.getElementById('text-{{episode.slug}}').style['max-height'] = '0';
-      document.getElementById('long-{{episode.slug}}').style['max-height'] = '100vh';
-      document.getElementById('container-{{episode.slug}}').setAttribute('mode','long');
-    }else{
-      //Remove long text, fade in short text
-      document.getElementById('long-{{episode.slug}}').style['transition'] = 'none';
-      document.getElementById('long-{{episode.slug}}').style['max-height'] = '0';
-      document.getElementById('text-{{episode.slug}}').style['max-height'] = '100vh';
-      document.getElementById('container-{{episode.slug}}').setAttribute('mode','short');
-    }
-  });
-
   document.getElementById('play-{{episode.slug}}').addEventListener('click', function(e){
     var playbutton = document.getElementById('play-{{episode.slug}}');
     var audio = document.getElementById('audio-{{episode.slug}}');
