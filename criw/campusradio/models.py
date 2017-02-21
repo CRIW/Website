@@ -11,19 +11,19 @@ from dateutil import parser
 # Create your models here.
 
 def get_show_image_path(instance, filename):
-	return os.path.join('uploads', 'shows', str(instance.slug), filename)
+	return os.path.join('shows', str(instance.slug), filename)
 
 def get_host_image_path(instance, filename):
-	return os.path.join('uploads', 'host', str(instance.slug), filename)
+	return os.path.join('host', str(instance.slug), filename)
 
 def get_episode_image_path(instance, filename):
-	return os.path.join('uploads', 'episode', str(instance.slug), filename)
+	return os.path.join('episode', str(instance.slug), filename)
 
 def get_image_path(instance, filename):
-	return os.path.join('uploads', 'images', str(instance.slug), filename)
+	return os.path.join('images', str(instance.slug), filename)
 
 def get_index_path(instance, filename):
-	return os.path.join('uploads', 'index', filename)
+	return os.path.join('index', filename)
 
 #A radioshow
 class Show(models.Model):
