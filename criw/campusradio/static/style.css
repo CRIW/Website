@@ -65,7 +65,7 @@ button.active,
 [type=submit]:active, .dropimage:active, button.pseudo:active,
 .pseudo.button:active,
 .pseudo[type=submit]:active, .pseudo.dropimage:active {
-  box-shadow: inset 0 0 0 99em rgba(255, 255, 255, 0.8); }
+  box-shadow: inset 0 0 0 99em rgba(255, 255, 255, 0.4); }
 
 nav .logo{
   height: 3em;
@@ -97,11 +97,29 @@ nav a:hover, nav a:visited{
   overflow: hidden;
   left: 0;
   top: 2em;
-  background-color: #2f708d;
+  background-color: white;
   box-shadow: 0 0 0.2em rgba(17, 17, 17, 0.2);
   transition: max-height 0.5s;
   max-height: 0;
 }
+
+.dropdown .pseudo.button{
+  color: black;
+}
+
+
+.dropdown .button.pseudo:hover,
+.dropdown .pseudo.button:hover,
+.dropdown .button.pseudo:focus,
+.dropdown .pseudo.button:focus{
+  box-shadow: inset 0 0 0 99em rgba(17, 17, 17, 0.2); }
+
+.dropdown .button.active,
+.dropdown .active.button,
+.dropdown .button:active,
+.dropdown  .button.pseudo:active,
+.dropdown .pseudo.button:active{
+  box-shadow: inset 0 0 0 99em rgba(17, 17, 17, 0.4); }
 
 .dropdown a{
   width: 100%;
