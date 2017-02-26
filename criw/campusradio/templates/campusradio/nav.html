@@ -18,5 +18,9 @@
   {% for page in pages %}
   <a href="{{page.get_absolute_url}}" class="pseudo button">{{page.title}}</a>
   {% endfor %}
+  <div class="pseudo button">
+    <a href="https://www.facebook.com/campusradiokiel"><img class="social stack" src="{% static "Facebook.svg" %}"/></a>
+    <a href="https://twitter.com/campusradiokiel"><img class="social stack" src="{% static "Twitter.svg" %}"/></a>
+  </div>
 </div>
 </nav>
