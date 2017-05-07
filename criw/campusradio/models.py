@@ -72,6 +72,8 @@ class Host(models.Model):
 				im.save(self.image.path)
 			except:
 				"Nothing"
+	def get_absolute_url(self):
+		return reverse('team-member', kwargs={'team_slug':self.slug})
 #An episode of a show
 class Episode(models.Model):
 	name = models.CharField(max_length=200, blank=True)

@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^news/$',views.news, name='news'),
     url(r'^news/archive/$',views.news,{'archive':True}, name='news-archive'),
     url(r'^article/(?P<article_slug>[0-9a-zA-Z-]+)/$',views.article, name='article'),
-    url(r'^image/(?P<image_slug>[0-9a-zA-Z-]+)/$',views.image, name='image')
+    url(r'^image/(?P<image_slug>[0-9a-zA-Z-]+)/$',views.image, name='image'),
+    url(r'^team/$',views.team, name='team'),
+    url(r'^team/(?P<team_slug>[0-9a-zA-Z-]+)/$',views.host, name='team-member')
 ]
