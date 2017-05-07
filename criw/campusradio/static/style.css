@@ -141,6 +141,7 @@ nav a:hover, nav a:visited{
 .episode-playbutton{
   font-size: 3rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 .episode-playbutton:hover{
@@ -184,6 +185,8 @@ nav a:hover, nav a:visited{
   height: 5rem;
   position: absolute;
   border-radius: 0.2em 0.2em 0 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   z-index: 3;
   filter: invert(95%);
   border-bottom: 1px solid #333;

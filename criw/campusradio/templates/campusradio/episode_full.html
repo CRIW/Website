@@ -49,7 +49,7 @@
       },500);
       audio.addEventListener('ended',function(){
         playbutton.setAttribute('paused','true');
-        playbutton.innerText = '▶';
+        playbutton.innerText = '▶️';
         audio.pause();
         audio.currentTime = 0;
       });
@@ -59,11 +59,11 @@
     }
     if(playbutton.getAttribute('paused') == 'true'){//We need to play
       audio.play();
-      playbutton.innerText = '▮▮';
+      playbutton.innerText = '⏸';
       playbutton.setAttribute('paused','false');
     }else{//Just pause
       audio.pause();
-      playbutton.innerText = '▶';
+      playbutton.innerText = '▶️';
       playbutton.setAttribute('paused','true');
     }
   });
