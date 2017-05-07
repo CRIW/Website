@@ -78,3 +78,12 @@ def news(request, archive=False):
 def article(request, article_slug):
 	article = get_object_or_404(Article,slug=article_slug)
 	return render(request, 'campusradio/article.html', {'article': article})
+
+def team(request):
+	hosts = Host.objects.all()
+	index = Index.objects.get()
+	return render(request, 'campusradio/team.html', {'hosts': hosts, 'index': index})
+
+def host(request, team_slug):
+	host = get_object_or_404(Host, slug=team_slug)
+	return render(request, 'campusradio/host.html', {'host': host})

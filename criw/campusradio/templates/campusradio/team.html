@@ -1,0 +1,20 @@
+{% extends 'campusradio/base.html' %}
+{% load static %}
+{% block title %}Campusradio Indiewelle: Team{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static "host.css" %}"/>
+{% endblock %}
+{% block content %}
+<h1 style="font-size: 300%;">Unser Team</h1>
+{% for host in hosts %}
+<a class="host-container" href="{{host.get_absolute_url}}">
+<div class="host">
+  <img class="host-image-small" src="{% if host.image %}{{host.image.url}}{% else %}{% static "Campusradio.svg"%}{%endif%}" />
+  <div class="host-name">{{host.name}}</div>
+  <div class="host-bio-teaser">
+    {{host.bio|safe|striptags|truncatewords:7}}
+  </div>
+</div>
+</a>
+{% endfor %}
+{% endblock %}

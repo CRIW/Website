@@ -1,0 +1,13 @@
+{% extends 'campusradio/base.html' %}
+{%load static %}
+{% block title %}Campusradio Indiewelle: {{host.name}}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static "host.css" %}"/>
+{% endblock %}
+{% block content %}
+<h1 style="font-size: 300%;">Campusradio Indiewelle: {{host.name}}</h1>
+<img class="host-image" src="{{host.image.url}}"/>
+<div class="host-bio">
+{{host.bio}}
+</div>
+{% endblock %}

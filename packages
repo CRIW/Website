@@ -2,3 +2,4 @@ django
 python-dateutil
 markdown
 django-rednoise
+pillow

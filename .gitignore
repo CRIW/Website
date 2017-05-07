@@ -1,4 +1,6 @@
 criw/uploads
 criw/db.sqlite3
 **/__pycache__/
-**\~
+*~
+*.pyc
+*.pyo
