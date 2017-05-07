@@ -11,6 +11,7 @@
   margin: 0.2em;
   padding-left: 5.2em;
   padding-top: 2.2ex;
+  overflow: hidden;
 }
 
 .host-container{
