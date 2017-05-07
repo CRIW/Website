@@ -11,12 +11,14 @@
   margin: 0.2em;
   padding-left: 5.2em;
   padding-top: 2.2ex;
+  overflow: hidden;
 }
 
 .host-container{
   display: inline-block;
   border: 0.15em solid #ccc;
   border-radius: 0.2em;
+  margin: 0.2em;
 }
 
 .host-container:hover{
