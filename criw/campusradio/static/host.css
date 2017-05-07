@@ -18,6 +18,7 @@
   display: inline-block;
   border: 0.15em solid #ccc;
   border-radius: 0.2em;
+  margin: 0.2em;
 }
 
 .host-container:hover{
