@@ -29,20 +29,19 @@ nav{
   color: #111;
 }
 
-@media only screen and (max-device-width: 800px) {
+@media screen and (max-width: 800px) {
   nav>.menu{
     float: none;
     display: block;
   }
 }
 
-@media only screen and (min-device-width: 1000px) {
-  #name-span::before{
+
+#name-span::before{
     content: 'Campusradio IndieWelle Kiel';
     color: white;
-  }
-
 }
+
 
 nav{
     background-color: #2f708d;
@@ -68,6 +67,7 @@ nav a:hover, nav a:visited{
 .social{
   max-height: 1.5em;
   padding: 0.2em;
+  vertical-align: middle;
 }
 
 /*A few bits for the dropdown menu */
@@ -261,10 +261,6 @@ body {
   overflow-x: hidden;
 }
 
-#name-span {
-  content: 'Campusradio Indiewelle Kiel';
-}
-
 nav {
   min-height: 3em;
 }
@@ -274,6 +270,10 @@ nav {
 }
 .menu {
   display: inline-block;
+}
+
+a.button {
+  color: #fff;
 }
 
 .button {
@@ -319,5 +319,18 @@ nav .menu > * {margin-right: 0;}
   margin-top: 3em;
   margin-left: 5vw;
   margin-right: 5vw;
+}
+
+#menu2 {
+  padding: .5em;
+  margin-top: -3em;
+}
+
+#menu2 .button {
+  background-color: #2f708d;
+}
+
+.button.indent{
+  margin-left: .5em;
 }
 

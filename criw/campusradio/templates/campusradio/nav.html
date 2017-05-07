@@ -1,10 +1,10 @@
 {% load static %}
-<nav>
+<nav id="navbar">
  <a href="/" class="brand">
   <img class="logo" src="{% static "Campusradio.svg" %}" />
   <span id="name-span"> </span>
  </a>
- <span class="menu">
+ <span class="menu" id="menu1">
   <a class="pseudo button" href="/news">Neues</a>
   <span class="pseudo button d2">Sendungen
    <div class="dropdown" id="dropdown-sendungen">
@@ -22,11 +22,33 @@
     {{page.title}}
    </a>
   {% endfor %}
-  <a class="button" href="https://www.facebook.com/campusradiokiel">
+  <a href="https://www.facebook.com/campusradiokiel">
    <img class="social" src="{% static "Facebook.svg" %}"/>
   </a>
-  <a class="button" href="https://twitter.com/campusradiokiel">
+  <a href="https://twitter.com/campusradiokiel">
    <img class="social" src="{% static "Twitter.svg" %}"/>
   </a>
  </span>
 </nav>
+<div id="menu2">
+  <a class="button" href="/news">Neues</a><br>
+  <span>Sendungen</span><br>
+  {% for show in shows %}
+   <a class="button indent" href="{{show.get_absolute_url}}">
+    {{show.name}}
+   </a><br>
+  {% endfor %}
+  <a class="button" href="/team">Team</a><br>
+   {% for page in pages %}
+    <a href="{{page.get_absolute_url}}" class="button">
+     {{page.title}}
+    </a><br>
+   {% endfor %}
+  <a href="https://www.facebook.com/campusradiokiel">
+   <img class="social" src="{% static "Facebook.svg" %}"/>
+  </a>
+  <a href="https://twitter.com/campusradiokiel">
+   <img class="social" src="{% static "Twitter.svg" %}"/>
+  </a><br>
+</div>
+<script src="{% static "responsive.js" %}"></script>
