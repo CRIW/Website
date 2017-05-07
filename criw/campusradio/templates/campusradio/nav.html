@@ -1,26 +1,32 @@
 {% load static %}
 <nav>
-  <a href="/" class="brand">
-   <img class="logo" src="{% static "Campusradio.svg" %}" />
-   <span id="name-span"></span>
+ <a href="/" class="brand">
+  <img class="logo" src="{% static "Campusradio.svg" %}" />
+  <span id="name-span"> </span>
  </a>
-  <div class="menu">
+ <span class="menu">
   <a class="pseudo button" href="/news">Neues</a>
-  <span class="dropdown-container" onmouseleave="document.getElementById('dropdown-sendungen').classList.remove('active');" onmouseenter="document.getElementById('dropdown-sendungen').classList.add('active');">
-  <a class="pseudo button" onclick="document.getElementById('dropdown-sendungen').classList.toggle('active');">Sendungen</a>
-  <div class="dropdown" id="dropdown-sendungen">
+  <span class="pseudo button d2">Sendungen
+   <div class="dropdown" id="dropdown-sendungen">
     {% for show in shows %}
-    <a class="pseudo button" href="{{show.get_absolute_url}}">{{show.name}}</a><br/>
+     <a class="pseudo button" href="{{show.get_absolute_url}}">
+      {{show.name}}
+     </a>
+     <br/>
     {% endfor %}
-  </div>
-</span>
+   </div>
+  </span>
   <!--<a class="pseudo button">Episoden</a></li>-->
   {% for page in pages %}
-  <a href="{{page.get_absolute_url}}" class="pseudo button">{{page.title}}</a>
+   <a href="{{page.get_absolute_url}}" class="pseudo button">
+    {{page.title}}
+   </a>
   {% endfor %}
-  <div class="pseudo button">
-    <a href="https://www.facebook.com/campusradiokiel"><img class="social stack" src="{% static "Facebook.svg" %}"/></a>
-    <a href="https://twitter.com/campusradiokiel"><img class="social stack" src="{% static "Twitter.svg" %}"/></a>
-  </div>
-</div>
+  <a class="button" href="https://www.facebook.com/campusradiokiel">
+   <img class="social" src="{% static "Facebook.svg" %}"/>
+  </a>
+  <a class="button" href="https://twitter.com/campusradiokiel">
+   <img class="social" src="{% static "Twitter.svg" %}"/>
+  </a>
+ </span>
 </nav>

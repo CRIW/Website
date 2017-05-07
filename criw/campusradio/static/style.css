@@ -25,7 +25,7 @@ a:active{
 
 nav{
   min-height: 4em;
-  font-size: 120%;
+  font-size: .5cm;
   color: #111;
 }
 
@@ -52,21 +52,6 @@ nav{
   color: white;
 }
 
-button.pseudo:hover,
-.pseudo.button:hover,
-.pseudo[type=submit]:hover, .pseudo.dropimage:hover, button.pseudo:focus,
-.pseudo.button:focus,
-.pseudo[type=submit]:focus, .pseudo.dropimage:focus {
-  box-shadow: inset 0 0 0 99em rgba(255, 255, 255, 0.2); }
-button.active,
-.active.button,
-.active[type=submit], .active.dropimage, button:active,
-.button:active,
-[type=submit]:active, .dropimage:active, button.pseudo:active,
-.pseudo.button:active,
-.pseudo[type=submit]:active, .pseudo.dropimage:active {
-  box-shadow: inset 0 0 0 99em rgba(255, 255, 255, 0.4); }
-
 nav .logo{
   height: 3em;
 }
@@ -86,40 +71,6 @@ nav a:hover, nav a:visited{
 }
 
 /*A few bits for the dropdown menu */
-
-.dropdown-container{
-  position:relative;
-}
-
-.dropdown{
-  position: absolute;
-  display: block;
-  overflow: hidden;
-  left: 0;
-  top: 2em;
-  background-color: white;
-  box-shadow: 0 0 0.2em rgba(17, 17, 17, 0.2);
-  transition: max-height 0.5s;
-  max-height: 0;
-}
-
-.dropdown .pseudo.button{
-  color: black;
-}
-
-
-.dropdown .button.pseudo:hover,
-.dropdown .pseudo.button:hover,
-.dropdown .button.pseudo:focus,
-.dropdown .pseudo.button:focus{
-  box-shadow: inset 0 0 0 99em rgba(17, 17, 17, 0.2); }
-
-.dropdown .button.active,
-.dropdown .active.button,
-.dropdown .button:active,
-.dropdown  .button.pseudo:active,
-.dropdown .pseudo.button:active{
-  box-shadow: inset 0 0 0 99em rgba(17, 17, 17, 0.4); }
 
 .dropdown a{
   width: 100%;
@@ -301,3 +252,69 @@ nav a:hover, nav a:visited{
 .episode-audio{
   display: none;
 }
+
+
+body {
+  overflow-x: hidden;
+}
+
+#name-span {
+  content: 'Campusradio Indiewelle Kiel';
+}
+
+nav {
+  min-height: 3em;
+}
+
+.brand {
+  display: inline-block;
+}
+.menu {
+  display: inline-block;
+}
+
+.button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dropdown .button {
+   color: #000;
+}
+
+.menu .button {
+  font-weight: bold;
+}
+
+.dropdown {
+  position: absolute;
+  overflow: hidden;
+  transition: opacity .4s;
+  background-color: #fff;
+  text-align: left;
+  opacity: 0.0;
+  border-radius: .2em;
+  padding-left: .3em;
+  padding-right: .3em;
+  margin-left: -.9em;
+  margin-top: .4em;
+  box-shadow: 0 0 0.2em rgba(17, 17, 17, 0.2);
+}
+
+nav .menu > * {margin-right: 0;}
+
+.social {
+  height: 2em;
+  width: 2em;
+}
+
+.button:hover > .dropdown {
+  opacity: 1.0;
+}
+
+#content {
+  margin-top: 3em;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
