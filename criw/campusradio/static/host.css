@@ -1,6 +1,7 @@
 .host-image{
   float: right;
   max-height: 55vh;
+  margin: 0.2em;
 }
 
 .host{
